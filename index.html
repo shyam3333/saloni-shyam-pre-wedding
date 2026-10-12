@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Parisienne&family=Pinyon+Script&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@600;700&family=Pinyon+Script&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -134,7 +134,7 @@
     <img class="seal-logo" src="assets/images/ss-logo-wax.png" alt="">
   </button>
 
-  <p class="cover-hint"><span>Tap on seal</span><i></i><span>to open the invitation</span></p>
+  <p class="cover-hint" id="coverHint"><span>Click on seal</span><i></i><span>to open the invitation</span></p>
 </section>
 
 <!-- ===================== MAIN ===================== -->
@@ -239,11 +239,26 @@
       <div class="shloka" data-bind-lines="shloka"></div>
       <p class="caps invite-line" data-bind="inviteLine1"></p>
       <p class="caps invite-line" data-bind="inviteLine2"></p>
+      <p class="caps occasion" data-bind="occasion"></p>
       <h1 class="name" data-bind="couple.bride"></h1>
       <p class="caps parents">D/O <span data-bind="families.brideParents"></span></p>
+      <p class="grandparents">(Granddaughter of <span data-bind="families.brideGrandparents"></span>)</p>
       <p class="caps with">with</p>
       <h1 class="name" data-bind="couple.groom"></h1>
       <p class="caps parents">S/O <span data-bind="families.groomParents"></span></p>
+      <p class="grandparents">(Grandson of <span data-bind="families.groomGrandparents"></span>)</p>
+    </div>
+  </section>
+
+  <!-- Our Beautiful Moments -->
+  <section class="moments reveal" aria-label="Our beautiful moments">
+    <p class="caps eyebrow">A Glimpse Of Us</p>
+    <h2 class="script-title">Our Beautiful Moments</h2>
+    <div class="gallery">
+      <div class="gallery-viewport" id="galleryViewport">
+        <div class="gallery-track" id="galleryTrack"></div>
+      </div>
+      <div class="gallery-dots" id="galleryDots"></div>
     </div>
   </section>
 
@@ -308,8 +323,13 @@
   <section class="closing reveal" aria-label="With love">
     <img class="closing-logo" src="assets/images/ss-logo-gold.png" alt="Shyam &amp; Saloni monogram">
     <p class="closing-msg" data-bind="closing.message"></p>
+    <div class="rsvp">
+      <p class="rsvp-title" data-bind="rsvp.title"></p>
+      <ul class="rsvp-names" id="rsvpNames"></ul>
+    </div>
     <p class="caps tiny">With love &amp; warmest wishes</p>
     <p class="family" data-bind="families.signOff"></p>
+    <p class="family-note" data-bind="families.signOffNote"></p>
     <p class="closing-tag" data-bind="closing.tagline"></p>
   </section>
 

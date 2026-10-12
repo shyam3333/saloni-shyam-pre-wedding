@@ -365,6 +365,87 @@
   }
 
   /* ---------------------------------------------------------------------
+     Our Beautiful Moments: photos change by themselves
+     --------------------------------------------------------------------- */
+  function initGallery() {
+    const items = CONFIG.gallery || [];
+    const track = document.getElementById("galleryTrack");
+    const dotsEl = document.getElementById("galleryDots");
+    if (!track || !items.length) return;
+
+    track.innerHTML = items.map(() => `<div class="gallery-slide"><img alt=""></div>`).join("");
+    track.querySelectorAll("img").forEach((img, i) => {
+      img.src = items[i].img;
+      img.alt = "Photo " + (i + 1) + " of Shyam & Saloni";
+    });
+    dotsEl.innerHTML = items.map((_, i) => `<button type="button" class="gallery-dot" aria-label="Show photo ${i + 1}"></button>`).join("");
+    const dots = [...dotsEl.querySelectorAll(".gallery-dot")];
+
+    let index = 0;
+    let timer = null;
+    function render() {
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
+    }
+    function restart() {
+      clearInterval(timer);
+      timer = setInterval(() => {
+        index = (index + 1) % items.length;
+        render();
+      }, CONFIG.galleryInterval || 1500);
+    }
+    dots.forEach((d, i) => d.addEventListener("click", () => {
+      index = i;
+      render();
+      restart();
+    }));
+    render();
+    restart();
+  }
+
+  /* ---------------------------------------------------------------------
+     R.S.V.P. names and tap-to-call numbers
+     --------------------------------------------------------------------- */
+  function renderRsvp() {
+    const rsvp = CONFIG.rsvp || {};
+    const list = document.getElementById("rsvpNames");
+    const mobiles = document.getElementById("rsvpMobiles"); // optional
+    if (list) {
+      (rsvp.names || []).forEach((n) => {
+        const li = document.createElement("li");
+        li.textContent = n;
+        list.appendChild(li);
+      });
+    }
+    if (mobiles && rsvp.mobiles && rsvp.mobiles.length) {
+      mobiles.append("Mob : ");
+      rsvp.mobiles.forEach((m, i) => {
+        if (i) mobiles.append(", ");
+        const a = document.createElement("a");
+        a.href = "tel:+91" + m;
+        a.textContent = m;
+        mobiles.appendChild(a);
+      });
+    }
+  }
+
+  /* ---------------------------------------------------------------------
+     Blink the "Click on seal" hint until the envelope is opened
+     --------------------------------------------------------------------- */
+  function blinkHint() {
+    const hint = document.getElementById("coverHint");
+    if (!hint) return;
+    const start = performance.now();
+    function frame(now) {
+      if (!hint.isConnected || hint.dataset.stop) return;
+      const wave = 0.5 + 0.5 * Math.cos(((now - start) / 1100) * Math.PI * 2);
+      hint.style.opacity = (0.35 + 0.65 * wave).toFixed(3);
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------------------------------------------------------------------
      Countdown
      --------------------------------------------------------------------- */
   function initCountdown() {
@@ -605,6 +686,12 @@
       const rect = seal.getBoundingClientRect();
       playSparkles(canvas, rect.left + rect.width / 2, rect.top + rect.height / 2, 2.6);
 
+      const hint = document.getElementById("coverHint");
+      if (hint) {
+        hint.dataset.stop = "1";
+        hint.style.opacity = "0";
+      }
+
       setTimeout(() => cover.classList.add("is-opening"), 1200);
       setTimeout(() => {
         document.body.classList.remove("is-locked");
@@ -633,8 +720,11 @@
   buildFort();
   buildRoseBorder();
   tearEdges();
+  initGallery();
+  renderRsvp();
   initCountdown();
   initAudio();
   initReveal();
   initCover();
+  blinkHint();
 })();

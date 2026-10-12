@@ -15,7 +15,7 @@
   --f-caps: "Cinzel", "Times New Roman", serif;
   --f-body: "Cormorant Garamond", Georgia, serif;
   --f-script: "Pinyon Script", "Brush Script MT", cursive;
-  --f-name: "Parisienne", "Brush Script MT", cursive;
+  --f-name: "Dancing Script", "Brush Script MT", cursive;
   --f-deva: "Tiro Devanagari Hindi", "Noto Serif Devanagari", serif;
 }
 
@@ -169,26 +169,41 @@ img { display: block; max-width: 100%; }
 
 .cover-hint {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
   bottom: max(6vh, 34px);
   z-index: 5;
   margin: 0;
+  transform: translateX(-50%);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 0 16px;
+  gap: 4px;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 10px 26px 9px;
+  border: 1.5px solid rgba(255, 236, 200, .9);
+  border-radius: 40px;
+  background: rgba(120, 0, 40, .35);
+  box-shadow: 0 0 18px rgba(255, 210, 130, .55), inset 0 0 12px rgba(255, 210, 130, .25);
   font-family: var(--f-caps);
-  font-size: clamp(9px, 2.6vw, 12px);
-  letter-spacing: .2em;
-  white-space: nowrap;
   text-transform: uppercase;
-  color: #ffd9e4;
   text-align: center;
+  color: #fff;
   transition: opacity .5s ease;
 }
-.cover-hint i { flex: 0 0 26px; height: 1px; background: currentColor; opacity: .8; }
+.cover-hint span:first-child {
+  font-size: clamp(15px, 4.4vw, 18px);
+  font-weight: 600;
+  letter-spacing: .2em;
+  color: #ffe7b0;
+  text-shadow: 0 0 10px rgba(255, 200, 110, .9), 0 1px 2px rgba(80, 0, 30, .6);
+}
+.cover-hint span:last-child {
+  font-size: clamp(9px, 2.5vw, 11px);
+  letter-spacing: .2em;
+  color: #ffe1ea;
+}
+.cover-hint i { display: none; }
 
 /* opening */
 .cover.is-opening { cursor: default; }
@@ -239,7 +254,7 @@ img { display: block; max-width: 100%; }
 
 .invite-text {
   position: absolute;
-  top: 17%;
+  top: 15%;
   left: 19%;
   right: 19%;
   text-align: center;
@@ -269,15 +284,75 @@ img { display: block; max-width: 100%; }
 
 .name {
   font-family: var(--f-name);
-  font-weight: 400;
-  font-size: 9cqw;
+  font-weight: 700;
+  font-size: 8cqw;
   line-height: 1.15;
   color: var(--maroon);
-  margin: 1.4cqw 0 .2cqw;
+  margin: 1.2cqw 0 .2cqw;
 }
 
-.parents { font-size: 2.3cqw; line-height: 1.5; margin: 0; }
+.parents { font-size: 2.2cqw; line-height: 1.45; margin: 0; }
+
+.occasion {
+  margin: .4cqw 0 1cqw;
+  font-weight: 700;
+  font-size: 3.3cqw;
+  line-height: 1.3;
+  letter-spacing: .04em;
+  color: var(--maroon);
+}
+
+.grandparents {
+  margin: .3cqw 0 0;
+  font-style: italic;
+  font-size: 2.55cqw;
+  line-height: 1.3;
+  color: #7a5a50;
+}
 .with { font-size: 2.4cqw; margin: 1.2cqw 0 0; letter-spacing: .12em; color: var(--maroon-ink); }
+
+/* ----- Our Beautiful Moments --------------------------------------- */
+
+.moments { padding: 46px 20px 56px; text-align: center; }
+.eyebrow { margin: 0 0 4px; font-size: 10px; letter-spacing: .3em; color: var(--muted); }
+
+.gallery { max-width: 340px; margin: 22px auto 0; }
+
+.gallery-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 5px solid #fff;
+  outline: 1px solid #ecd9cf;
+  box-shadow: 0 20px 38px -16px rgba(120, 40, 50, .45);
+  background: #f4e8df;
+}
+.gallery-viewport:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.gallery-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform .55s cubic-bezier(.4, 0, .2, 1);
+}
+.gallery-slide { flex: 0 0 100%; width: 100%; height: 100%; }
+.gallery-slide img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+
+.gallery-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+.gallery-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #e3c7bd;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+.gallery-dot.is-active { width: 22px; border-radius: 5px; background: var(--maroon); }
+
 
 /* ----- Save the date (torn parchment) ------------------------------------ */
 
@@ -446,6 +521,27 @@ img { display: block; max-width: 100%; }
 }
 .closing .tiny { margin: 22px 0 6px; font-size: 9px; letter-spacing: .24em; color: var(--muted); }
 .family { margin: 0; font-size: 23px; font-weight: 600; color: #5a1d2a; }
+.family-note { margin: 0; font-size: 17px; font-style: italic; color: #7b3b45; }
+
+.rsvp {
+  max-width: 400px;
+  margin: 28px auto 0;
+  padding: 18px 0 16px;
+  border-top: 1px solid #ecd6cf;
+  border-bottom: 1px solid #ecd6cf;
+}
+.rsvp-title {
+  margin: 0 0 8px;
+  font-family: var(--f-caps);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: .24em;
+  color: var(--maroon);
+}
+.rsvp-names { list-style: none; margin: 0; padding: 0; font-size: 15.5px; line-height: 1.35; color: #5a1d2a; }
+.rsvp-names li { margin: 0 0 7px; text-wrap: balance; }
+.rsvp-mobiles { margin: 10px 0 0; font-size: 16px; letter-spacing: .03em; color: #7b3b45; font-variant-numeric: lining-nums; }
+.rsvp-mobiles a { color: var(--maroon); text-decoration: none; font-weight: 600; }
 .closing-tag { margin: 4px 0 0; font-style: italic; font-size: 15.5px; color: #8a6b66; }
 
 .rose-border {

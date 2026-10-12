@@ -19,9 +19,12 @@ window.CARD_CONFIG = {
 
   // ---- Families (shown under each name on the invitation) -------------
   families: {
-    groomParents: "Mrs. Rekha Rani & Er. Sanjeev Kumar Varshney",
     brideParents: "Mrs. Ritu Gupta & Mr. Shri Mohan Varshney",
-    signOff: "The Varshney Families"
+    brideGrandparents: "Late Smt. Anara Devi & Late Shri Jagdish Prasad Gupta",
+    groomParents: "Mrs. Rekha Rani & Er. Sanjeev Kumar Varshney",
+    groomGrandparents: "Late Smt. Laxmi Devi & Late Shri Ram Krishna Varshney (BDO)",
+    signOff: "All Varshney Family",
+    signOffNote: "(Maida Wala Pariwar)"
   },
 
   // ---- Invitation wording -------------------------------------------
@@ -30,14 +33,24 @@ window.CARD_CONFIG = {
     "निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥"
   ],
   inviteLine1: "Two hearts, two souls, bound together in love forever.",
-  inviteLine2: "We request the pleasure of your company as we celebrate the pre-wedding of our children.",
+  inviteLine2: "With the Blessings Of The Almighty, We Solicit Your Gracious Presence With Family & Friends On The Auspicious Occasion Of The",
+  occasion: "Pre-Wedding Reception and Sangeet of",
 
   // ---- Date ------------------------------------------------------------
   // eventDate MUST keep this exact format - it drives the countdown.
   eventDate: "2026-11-15T00:00:00+05:30",
   saveTheDate: { day: "15", month: "NOV", year: "2026" },
-  saveTheDateLine: "For the Celebration",
+  saveTheDateLine: "For the Pre-Wedding Reception and Sangeet",
   dateDisplay: "Sunday, 15th November 2026",
+
+  // ---- Our Beautiful Moments (photos change by themselves) ------------
+  galleryInterval: 1500,   // milliseconds per photo
+  gallery: [
+    { img: "assets/images/gallery/photo-1.jpg" },
+    { img: "assets/images/gallery/photo-2.jpg" },
+    { img: "assets/images/gallery/photo-3.jpg" },
+    { img: "assets/images/gallery/photo-4.jpg" }
+  ],
 
   // ---- Venue -----------------------------------------------------------
   venue: {
@@ -51,6 +64,15 @@ window.CARD_CONFIG = {
   closing: {
     message: "We can't wait to celebrate with you. Your presence will make our day all the more special.",
     tagline: "Two families, one beautiful beginning — see you there"
+  },
+
+  // ---- R.S.V.P. (shown after the closing message) ----------------------
+  rsvp: {
+    title: "R.S.V.P.",
+    names: [
+      "Mr. Ram Kishan Varshney & Mrs. Amita Varshney",
+      "Mr. Radhey Shyam Varshney & Mrs. Kusum Lata"
+    ]
   },
 
   // ---- Background music ----------------------------------------------
