@@ -46,10 +46,10 @@ window.CARD_CONFIG = {
   // ---- Our Beautiful Moments (photos change by themselves) ------------
   galleryInterval: 1500,   // milliseconds per photo
   gallery: [
-    { img: "assets/images/gallery/photo-1.jpg" },
-    { img: "assets/images/gallery/photo-2.jpg" },
-    { img: "assets/images/gallery/photo-3.jpg" },
-    { img: "assets/images/gallery/photo-4.jpg" }
+    { img: "assets/images/gallery/photo-3.jpg" },   // tilak
+    { img: "assets/images/gallery/photo-4.jpg" },   // Taj Mahal
+    { img: "assets/images/gallery/photo-1.jpg" },   // sitting on the sofa
+    { img: "assets/images/gallery/photo-2.jpg" }    // red dress
   ],
 
   // ---- Venue -----------------------------------------------------------
