@@ -70,7 +70,7 @@ window.CARD_CONFIG = {
   rsvp: {
     title: "R.S.V.P.",
     names: [
-      "Mr. Ram Kishan Varshney & Mrs. Amita Varshney",
+      "Mr. Ram Kishan Gupta & Mrs. Amita Varshney",
       "Mr. Radhey Shyam Varshney & Mrs. Kusum Lata"
     ]
   },
